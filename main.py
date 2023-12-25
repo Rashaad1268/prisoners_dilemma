@@ -19,7 +19,7 @@ all_players = [
 for _ in range(5):
     for player_1 in all_players:
         for player_2 in all_players:
-            GameManager(player_1, player_2).run_rounds(max_rounds_per_game)
+            GameManager(player_1, player_2, noise_percentage=0.01).run_rounds(max_rounds_per_game)
 
 for place, player in enumerate(sorted(all_players, key=lambda p: p.points, reverse=True), start=1):
     print(

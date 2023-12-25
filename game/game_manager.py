@@ -1,20 +1,21 @@
 import random
+import typing as t
 
 from game.enums import Action
 from game.player import Player
 
 
 class GameManager:
-    def __init__(self, player_1: Player, player_2: Player, has_noise: bool = False):
+    def __init__(self, player_1: Player, player_2: Player, noise_percentage: t.Optional[float] = None):
         self.player_1 = player_1
         self.player_2 = player_2
 
-        self.has_noise = has_noise
+        self.noise_percentage = noise_percentage
 
     def apply_noise(self, output):
-        if self.has_noise:
+        if self.noise_percentage:
             if output == Action.cooperate:
-                if random.randrange(0, 20) == 5:
+                if random.random() < self.noise_percentage:
                     return Action.defect
 
         return output
