@@ -16,12 +16,11 @@ all_players = [
     Player(strategies.AlwaysDefectStrategy),
 ]
 
-for _ in range(1):
+for _ in range(5):
     for player_1 in all_players:
         for player_2 in all_players:
-            if player_1 != player_2:
-                GameManager(player_1, player_2).run_rounds(max_rounds_per_game)
+            GameManager(player_1, player_2).run_rounds(max_rounds_per_game)
 
 for place, player in enumerate(sorted(all_players, key=lambda p: p.points, reverse=True), start=1):
     print(
-        f"{place}: {player.strategy} (avg points: {player.points / len(all_players)} in {max_rounds_per_game} rounds)")
+        f"{place}: {player.strategy} (avg points: {player.points / (len(all_players)*5)} in {max_rounds_per_game} rounds)")
